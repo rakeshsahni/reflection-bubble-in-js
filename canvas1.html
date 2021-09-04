@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <style>
+        .main{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            height: 100vh;
+        }
+        canvas{
+            background-color: #fff;
+            border: 3px solid blue;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <main class="main">
+
+        <canvas
+        id="myCanvas"
+        height="300"
+        width="500"
+        ></canvas>
+        <h1>This is Simple canvas Application</h1>
+    </main>
+    <!-- <video id="vd" autoplay muted ></video> -->
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        // console.log(canvas);
+        let ctx = canvas.getContext('2d');
+        // canvas.width = window.innerWidth
+        // ctx.fillRect(50,50,2*200,250);
+        // ctx.beginPath();
+        // ctx.arc(50,50,50,0,2*Math.PI);
+        // ctx.stroke()
+        // ctx.clearRect(0,0,innerWidth,innerHeight);
+            
+        let x = 200;
+        let y = 200;
+        let dx = 4;
+        let dy = 4;
+        const animated = () => {
+            requestAnimationFrame(animated)
+            // ctx.clearRect(0,0,innerWidth,innerHeight);
+            
+            ctx.clearRect(0,0,500,300);
+            // console.log(`width : ${innerWidth}`); 
+            // console.log(`Height ${innerHeight}`);
+            // if(x == window.innerWidth) break;
+            ctx.beginPath();
+            ctx.arc(x,y,30,0,2*Math.PI);
+            ctx.stroke()
+            if(x + 30 > 500 || x - 30 < 0) dx = -dx;
+            if(y + 30 > 300 || y - 30 < 0) dy = -dy;
+            x += dx;
+            y += dy;
+        }
+        animated()
+        // for(let i=0;i<100;++i) console.log(`${Math.random( - 5 )*10} <br/>`)
+
+    </script>
+</body>
+</html>
